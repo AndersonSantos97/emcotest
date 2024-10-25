@@ -28,4 +28,9 @@ export class ApiService {
     const url = `${this.baseURL}/tasks`;
     return this.http.post(url, data);
   }
+
+  tasksByUser(userId: number): Observable<any[]>{
+    const url = `${this.baseURL}/tasks/user/${userId}`;
+    return this.http.get<any[]>(url)
+  }
 }

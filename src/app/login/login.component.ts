@@ -18,7 +18,7 @@ export class LoginComponent{
                 localStorage.setItem('access_token',response.access_token);
 
                 const decodToken: any = jwtDecode(response.access_token);
-
+                console.log(decodToken)
                 const rol = decodToken.rol;
                 localStorage.setItem('user_rol',rol);
                 console.log(rol)
