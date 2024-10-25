@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { ApiService } from "../api.service";
 import { Router } from "@angular/router";
+import { jwtDecode } from "jwt-decode";
 
 
 @Component({
@@ -16,6 +17,11 @@ export class LoginComponent{
             next: (response) => {
                 localStorage.setItem('access_token',response.access_token);
 
+                const decodToken: any = jwtDecode(response.access_token);
+
+                const rol = decodToken.rol;
+                localStorage.setItem('user_rol',rol);
+                console.log(rol)
                 this.router.navigate(['/panel']);
             },
             error: (err)=>{
