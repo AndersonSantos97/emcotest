@@ -29,4 +29,15 @@ export class CreateUserComponent{
             }
         })
     }
+
+    logout(){
+        localStorage.removeItem('access_token');
+        sessionStorage.removeItem('access_token');
+    
+        this.router.navigate(['/login'])
+      }
+    
+    goBack(){
+        this.router.navigate(['/panel']);
+      }
 }
