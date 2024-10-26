@@ -19,26 +19,35 @@
 </header>
 
 <section class="m-24">
-  <form (ngSubmit)="UserSubmit()" action="" class="border-gray-200 bg-gray-900 rounded-md p-2">
+  <form #userForm="ngForm" (ngSubmit)="UserSubmit()" action="" class="border-gray-200 bg-gray-900 rounded-md p-2">
     <div class="my-5">
         <label for="username" class="block mb-2 text-sm font-medium text-blue-600">Nombre de Usuario:</label>
-        <input type="text" id="username" [(ngModel)]="user.user_name" name="user_name" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required>
+        <input type="text" id="username" [(ngModel)]="user.user_name" name="user_name" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required #userName="ngModel">
+        <div *ngIf="userName.invalid && userName.touched" class="text-red-500 text-sm">
+            El nombre de usuario es requerido
+        </div>
     </div>
     
     <div class="my-5">
         <label for="password" class="block mb-2 text-sm font-medium text-blue-600">Contraseña:</label>
-        <input type="password" id="password" [(ngModel)]="user.user_pass" name="user_pass" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required>
+        <input type="password" id="password" [(ngModel)]="user.user_pass" name="user_pass" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required #userPass="ngModel">
+        <div *ngIf="userPass.invalid && userPass.touched" class="text-red-500 text-sm">
+            La contraseña es requerida
+        </div>
     </div>
     
     <div class="my-5">
         <label for="role" class="block mb-2 text-sm font-medium text-blue-600">Rol:</label>
-        <select id="role" [(ngModel)]="user.user_rol" name="user_rol" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required>
+        <select id="role" [(ngModel)]="user.user_rol" name="user_rol" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required #userRol="ngModel">
           <option value="1">Administrador</option>
           <option value="3">Usuario</option>
         </select>
+        <div *ngIf="userRol.invalid && userRol.touched" class="text-red-500 text-sm">
+            El rol es requerido
+        </div>
     </div>
     
-    <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600">Crear Usuario</button>
+    <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600" [disabled]="userForm.invalid">Crear Usuario</button>
 
   </form>
 </section>

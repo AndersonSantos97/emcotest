@@ -20,26 +20,35 @@
 
 
 <section class="m-24">
-    <form (ngSubmit)="asigTask()" action="" class="border-gray-200 bg-gray-900 rounded-md p-2">
+    <form #taskForm="ngForm" (ngSubmit)="asigTask()" action="" class="border-gray-200 bg-gray-900 rounded-md p-2">
         <div class="my-5">
-            <label for="task_description" class="block mb-2 text-sm font-medium text-blue-600">Descripcion de la tarea</label>
-            <input [(ngModel)]="task.task_description" type="text" name="task_description" id="task_description" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required>
+            <label for="task_description" class="block mb-2 text-sm font-medium text-blue-600" >Descripcion de la tarea</label>
+            <input [(ngModel)]="task.task_description" type="text" name="task_description" id="task_description" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required #taskDesc="ngModel">
+            <div *ngIf="taskDesc.invalid && taskDesc.touched" class="text-red-500 text-sm">
+                La descripción de la tarea es requerida.
+            </div>
         </div>
         <div class="my-5">
             <label for="task_state" class="block mb-2 text-sm font-medium text-blue-600">Estado de la Tarea:</label>
-            <select id="task_state" [(ngModel)]="task.task_state" name="task_state" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required>
+            <select id="task_state" [(ngModel)]="task.task_state" name="task_state" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required #taskState="ngModel">
                 <option *ngFor="let state of states" [value]="state">{{ state }}</option>
             </select>
+            <div *ngIf="taskState.invalid && taskState.touched" class="text-red-500 text-sm">
+                El estado de la tarea es requerido.
+            </div>
         </div>
         
         <div class="my-5">
             <label for="user_id" class="block mb-2 text-sm font-medium text-blue-600">Asignar a Usuario:</label>
-            <select id="user_id" [(ngModel)]="task.task_user" name="user_id" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required>
+            <select id="user_id" [(ngModel)]="task.task_user" name="user_id" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required #taskUser="ngModel">
                 <option *ngFor="let user of users" [value]="user.id">{{ user.user_name }}</option>
             </select>
+            <div *ngIf="taskUser.invalid && taskUser.touched" class="text-red-500 text-sm">
+                Debes asignar la tarea a un usuario.
+            </div>
         </div>
         
-        <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600">Asignar Tarea</button>
+        <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600" [disabled]="taskForm.invalid">Asignar Tarea</button>
     </form>
     
 </section>
