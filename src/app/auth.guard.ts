@@ -19,22 +19,7 @@ export class AuthGuard implements CanActivate{
   }
 }
 
-export class AdminGuard implements CanActivate {
-  constructor(private router: Router){}
 
-  canActivate(): boolean {
-    const rol = localStorage.getItem('user_rol');
-
-    if(rol && rol === '1'){
-      return true;
-    }else{
-      this.router.navigate(['/panel']);
-      return false;
-    }
-      
-  }
-
-}
 // export const authGuard: CanActivateFn = (route, state) => {
 //   return true;
 // };

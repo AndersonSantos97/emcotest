@@ -5,7 +5,7 @@ import { PanelComponent } from './panel/panel.component';
 import { AuthGuard } from './auth.guard';
 import { CreateUserComponent } from './createUser/createUser.component';
 import { AsigTaskComponent } from './asig-task/asig-task.component';
-import { AdminGuard } from './auth.guard';
+import { AdminGuard } from './admin-guard.guard';
 
 
 const routes: Routes = [

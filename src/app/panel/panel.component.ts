@@ -14,6 +14,9 @@ export class PanelComponent implements OnInit{
     userId: number | undefined;
     selectedTask: TaskEntity | null = null;
 
+    page: number=1;
+    items: number = 5;
+
     constructor (private apiService: ApiService, private router: Router, private cdr: ChangeDetectorRef){}
 
     ngOnInit(): void {
@@ -115,5 +118,15 @@ export class PanelComponent implements OnInit{
         });
 
         this.selectedTask=null;
+    }
+
+    get paginationTask(){
+        const start = (this.page-1) * this.items;
+        const end = start + this.items;
+        return this.tasks.slice(start, end);
+    }
+
+    setPage(pageNum: number){
+        this.page = pageNum;
     }
 }
