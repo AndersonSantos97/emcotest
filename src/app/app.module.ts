@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { CreateUserComponent } from './createUser/createUser.component';
 import { AsigTaskComponent } from './asig-task/asig-task.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +28,9 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     provideHttpClient(),

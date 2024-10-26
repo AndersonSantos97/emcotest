@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-asig-task',
@@ -17,7 +18,7 @@ export class AsigTaskComponent implements OnInit{
   states =  ['Pendiente', 'En progreso', 'Completado'];
   users: any[] =[]
 
-  constructor(private apiService: ApiService, private router: Router){}
+  constructor(private apiService: ApiService, private router: Router, private toastr: ToastrService){}
 
   ngOnInit(): void {
       this.allUsers();
@@ -38,12 +39,17 @@ export class AsigTaskComponent implements OnInit{
   asigTask(){
     
     this.task.task_user = Number(this.task.task_user);
-    console.log('Datos a enviar: ', this.task)
+    //console.log('Datos a enviar: ', this.task)
     this.apiService.taskCreate(this.task).subscribe({
+
       next: (response) => {
+        //this.toastr.success('Tarea Asiganada');
+        window.alert('Tarea asignada exitosamente');
         this.router.navigate(['/panel']);
       },
       error: (err) =>{
+        //this.toastr.error('No se asigno tarea');
+        window.alert('Error al asignar tarea');
         console.log('Error al asignar la tarea: ', err)
       }
     })

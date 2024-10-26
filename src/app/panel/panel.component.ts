@@ -3,6 +3,7 @@ import { ApiService } from "../api.service";
 import { Router } from "@angular/router";
 import { jwtDecode } from "jwt-decode";
 import { TaskEntity } from "../models/task.entity";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
     selector: 'app-panel',
@@ -17,7 +18,7 @@ export class PanelComponent implements OnInit{
     page: number=1;
     items: number = 5;
 
-    constructor (private apiService: ApiService, private router: Router, private cdr: ChangeDetectorRef){}
+    constructor (private apiService: ApiService, private router: Router, private cdr: ChangeDetectorRef, private toastr: ToastrService){}
 
     ngOnInit(): void {
         this.getUserId();
@@ -29,11 +30,9 @@ export class PanelComponent implements OnInit{
         const rol = localStorage.getItem('user_rol');
 
         const numRol = Number(rol)
-        
-        
-
+             
         if(numRol=== 1){
-            console.log(`el rol es desde el if ${numRol}`);
+            ///console.log(`el rol es desde el if ${numRol}`);
             return 1
         }else if(numRol === 3){
             return 3;
@@ -95,10 +94,14 @@ export class PanelComponent implements OnInit{
         if(confirm('Estas seguro de que deseas eliminar esta tarea?')){
             this.apiService.deleteTask(taskId).subscribe({
                 next:() => {
+                    //this.toastr.success('Tarea Eliminada');
+                    window.alert('Se elimino la tarea');
                     this.tasks = this.tasks.filter(task => task.id !== taskId);
 
                 },
                 error: (err) => {
+                    //this.toastr.error('Error al eliminar');
+                    window.alert('Error al eliminar');
                     console.error('Error al eliminar la tarea: ', err)
                 }
             })
@@ -111,8 +114,12 @@ export class PanelComponent implements OnInit{
                 // Actualiza la tarea en la lista de tareas
                 this.tasks = this.tasks.map(task => (task.id === updatedTask.id ? updatedTask : task));
                 this.selectedTask = null; // Cierra el modal
+                //this.toastr.success('Tarea modificada');
+                window.alert('Se modifico la tarea');
             },
             error: (err) => {
+                //this.toastr.error('Error al actualizar');
+                window.alert('Error al modificar');
                 console.error('Error al actualizar la tarea: ', err);
             }
         });
