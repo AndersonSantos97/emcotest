@@ -11,6 +11,7 @@ import { PanelComponent } from './panel/panel.component';
 import { FormsModule } from '@angular/forms';
 import { CreateUserComponent } from './createUser/createUser.component';
 import { AsigTaskComponent } from './asig-task/asig-task.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AsigTaskComponent } from './asig-task/asig-task.component';
     LoginComponent,
     PanelComponent,
     CreateUserComponent,
-    AsigTaskComponent
+    AsigTaskComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
