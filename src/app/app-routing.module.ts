@@ -5,14 +5,15 @@ import { PanelComponent } from './panel/panel.component';
 import { AuthGuard } from './auth.guard';
 import { CreateUserComponent } from './createUser/createUser.component';
 import { AsigTaskComponent } from './asig-task/asig-task.component';
+import { AdminGuard } from './auth.guard';
 
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
   {path:'login',component:LoginComponent},
   {path: 'panel',component:PanelComponent, canActivate:[AuthGuard]},
-  {path: 'createUser',component:CreateUserComponent, canActivate:[AuthGuard]},
-  {path: 'asigtask',component:AsigTaskComponent, canActivate:[AuthGuard]}
+  {path: 'createUser',component:CreateUserComponent, canActivate:[AuthGuard, AdminGuard]},
+  {path: 'asigtask',component:AsigTaskComponent, canActivate:[AuthGuard, AdminGuard]}
 ];
 
 @NgModule({
