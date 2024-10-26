@@ -1,1 +1,19 @@
-<p>edit-task works!</p>
+<div *ngIf="task">
+    <div class="modal-content">
+        <span class="close" (click)="task = null">&times;</span>
+        <h2>Editar Tarea</h2>
+        <form (ngSubmit)="submit()" action="">
+            <label for="task_description">Descripción:</label>
+            <input type="text" id="task_description" [(ngModel)]="task.task_description" name="task_description" required />
+
+            <label for="task_state">Estado:</label>
+            <select id="task_state" [(ngModel)]="task.task_state" name="task_state" required>
+                <option value="Pendiente">Pendiente</option>
+                <option value="en progreso">En progreso</option>
+                <option value="completado">Completado</option>
+            </select>
+
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
+</div>

@@ -46,12 +46,14 @@
                 <td class="px-6 py-4">{{ task.task_state}}</td>
                 <td class="px-6 py-4">
                     <div class="flex justify-around">
-                        <button class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Editar</button>
-                        <button *ngIf="rolAdmin() === 1" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Eliminar</button>
+                        <button (click)="editTask(task)" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Editar</button>
+                        <button (click)="deleteTask(task.id)" *ngIf="rolAdmin() === 1" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Eliminar</button>
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
+
+    <app-edit-task [task]="selectedTask" (update)="updateTask($event)" *ngIf="selectedTask"></app-edit-task>
 
 </section>

@@ -2,14 +2,17 @@ import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { ApiService } from "../api.service";
 import { Router } from "@angular/router";
 import { jwtDecode } from "jwt-decode";
+import { TaskEntity } from "../models/task.entity";
 
 @Component({
     selector: 'app-panel',
     templateUrl: './panel.component.html'
 })
 export class PanelComponent implements OnInit{
-    tasks: any[] = [];
+    tasks: TaskEntity[] = []
+    //tasks: any[] = [];
     userId: number | undefined;
+    selectedTask: TaskEntity | null = null;
 
     constructor (private apiService: ApiService, private router: Router, private cdr: ChangeDetectorRef){}
 
@@ -78,5 +81,39 @@ export class PanelComponent implements OnInit{
     }
     goAsigT(){
         this.router.navigate(['asigtask']);
+    }
+
+
+    editTask(task: TaskEntity): void{
+        this.selectedTask = { ...task };
+    }
+
+    deleteTask(taskId: number): void{
+        if(confirm('Estas seguro de que deseas eliminar esta tarea?')){
+            this.apiService.deleteTask(taskId).subscribe({
+                next:() => {
+                    this.tasks = this.tasks.filter(task => task.id !== taskId);
+
+                },
+                error: (err) => {
+                    console.error('Error al eliminar la tarea: ', err)
+                }
+            })
+
+        }
+    }
+    updateTask(updatedTask: TaskEntity): void {
+        this.apiService.updateTask(updatedTask.id, updatedTask).subscribe({
+            next: () => {
+                // Actualiza la tarea en la lista de tareas
+                this.tasks = this.tasks.map(task => (task.id === updatedTask.id ? updatedTask : task));
+                this.selectedTask = null; // Cierra el modal
+            },
+            error: (err) => {
+                console.error('Error al actualizar la tarea: ', err);
+            }
+        });
+
+        this.selectedTask=null;
     }
 }

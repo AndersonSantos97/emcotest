@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { TaskEntity } from './models/task.entity';
 
 
 @Injectable({
@@ -37,5 +37,14 @@ export class ApiService {
   getUsers(){
     const url =`${this.baseURL}/users/users`;
     return this.http.get<any[]>(url);
+  }
+
+  updateTask(id:number, task: TaskEntity): Observable<TaskEntity>{
+
+    return this.http.put<TaskEntity>(`${this.baseURL}/tasks/${id}`,task);
+  }
+
+  deleteTask(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.baseURL}/${id}`);
   }
 }
