@@ -1,19 +1,33 @@
-<div *ngIf="task">
-    <div class="modal-content">
-        <span class="close" (click)="task = null">&times;</span>
-        <h2>Editar Tarea</h2>
-        <form (ngSubmit)="submit()" action="">
-            <label for="task_description">Descripción:</label>
-            <input type="text" id="task_description" [(ngModel)]="task.task_description" name="task_description" required />
-
-            <label for="task_state">Estado:</label>
-            <select id="task_state" [(ngModel)]="task.task_state" name="task_state" required>
-                <option value="Pendiente">Pendiente</option>
-                <option value="en progreso">En progreso</option>
-                <option value="completado">Completado</option>
-            </select>
-
-            <button type="submit">Guardar Cambios</button>
-        </form>
+<div *ngIf="task" class="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
+    <div class="relative w-full max-w-2xl p-4 bg-gray-900 rounded-lg">
+        <div class="modal-content">
+            <span class="close text-white text-3xl cursor-pointer absolute right-4 top-4" (click)="task = null">&times;</span>
+            <div>
+                <h2 class="text-xs text-gray-700 uppercase bg-gray-50 bg-gray-900 text-gray-100">Editar Tarea</h2>
+            </div>
+            
+            <div class="">
+                <form (ngSubmit)="submit()" action="" class="border-gray-200 bg-gray-900 rounded-md p-2">
+                    <div class="my-5">
+                        <label for="task_description" class="block mb-2 text-sm font-medium text-blue-600">Descripción:</label>
+                        <input type="text" id="task_description" [(ngModel)]="task.task_description" name="task_description" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required />
+                    </div>
+                    
+                    <div class="my-5">
+                        <label for="task_state" class="block mb-2 text-sm font-medium text-blue-600">Estado:</label>
+                        <select id="task_state" [(ngModel)]="task.task_state" name="task_state" class="text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="en progreso">En progreso</option>
+                            <option value="completado">Completado</option>
+                        </select>     
+                    </div>
+                    
+                    <div class="my-5">
+                        <button type="submit" class="ml-2 p-2 bg-blue-500 text-white rounded">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+    
+        </div>
     </div>
 </div>
