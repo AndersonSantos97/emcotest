@@ -76,4 +76,7 @@ export class PanelComponent implements OnInit{
     goCreateU(){
         this.router.navigate(['/createUser']);
     }
+    goAsigT(){
+        this.router.navigate(['asigtask']);
+    }
 }

@@ -1,0 +1,23 @@
+<h1>Hola vengan</h1>
+<form (ngSubmit)="UserSubmit()" action="">
+    <div>
+        <label for="username">Nombre de Usuario:</label>
+        <input type="text" id="username" [(ngModel)]="user.user_name" name="user_name" required>
+      </div>
+    
+      <div>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" [(ngModel)]="user.user_pass" name="user_pass" required>
+      </div>
+    
+      <div>
+        <label for="role">Rol:</label>
+        <select id="role" [(ngModel)]="user.user_rol" name="user_rol" required>
+          <option value="1">Administrador</option>
+          <option value="3">Usuario</option>
+        </select>
+      </div>
+    
+      <button type="submit">Crear Usuario</button>
+
+</form>

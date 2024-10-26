@@ -9,12 +9,16 @@ import { ApiService } from './api.service';
 import { LoginComponent } from './login/login.component';
 import { PanelComponent } from './panel/panel.component';
 import { FormsModule } from '@angular/forms';
+import { CreateUserComponent } from './createUser/createUser.component';
+import { AsigTaskComponent } from './asig-task/asig-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PanelComponent
+    PanelComponent,
+    CreateUserComponent,
+    AsigTaskComponent
   ],
   imports: [
     BrowserModule,

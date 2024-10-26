@@ -20,7 +20,7 @@ export class ApiService {
 
 
   userCreatre(data: any): Observable<any>{
-    const url = `${this.baseURL}/users/`;
+    const url = `${this.baseURL}/users`;
     return this.http.post(url, data);
   }
 
@@ -32,5 +32,10 @@ export class ApiService {
   tasksByUser(userId: number): Observable<any[]>{
     const url = `${this.baseURL}/tasks/user/${userId}`;
     return this.http.get<any[]>(url)
+  }
+
+  getUsers(){
+    const url =`${this.baseURL}/users/users`;
+    return this.http.get<any[]>(url);
   }
 }
