@@ -11,7 +11,7 @@ export class AsigTaskComponent implements OnInit{
   task = {
     task_description: '',
     task_state: 'Pendiente',
-    user_id: null
+    task_user: 0
   };
 
   states =  ['Pendiente', 'En progreso', 'Completado'];
@@ -36,6 +36,9 @@ export class AsigTaskComponent implements OnInit{
 
 
   asigTask(){
+    
+    this.task.task_user = Number(this.task.task_user);
+    console.log('Datos a enviar: ', this.task)
     this.apiService.taskCreate(this.task).subscribe({
       next: (response) => {
         this.router.navigate(['/panel']);

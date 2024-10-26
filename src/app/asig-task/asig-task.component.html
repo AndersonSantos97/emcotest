@@ -5,5 +5,19 @@
         <label for="task_description">Descripcion de la tarea</label>
         <input [(ngModel)]="task.task_description" type="text" name="task_description" id="task_description" required>
     </div>
-
+    <div>
+        <label for="task_state">Estado de la Tarea:</label>
+        <select id="task_state" [(ngModel)]="task.task_state" name="task_state" required>
+            <option *ngFor="let state of states" [value]="state">{{ state }}</option>
+        </select>
+    </div>
+    
+    <div>
+        <label for="user_id">Asignar a Usuario:</label>
+        <select id="user_id" [(ngModel)]="task.task_user" name="user_id" required>
+            <option *ngFor="let user of users" [value]="user.id">{{ user.user_name }}</option>
+        </select>
+    </div>
+    
+    <button type="submit">Asignar Tarea</button>
 </form>
