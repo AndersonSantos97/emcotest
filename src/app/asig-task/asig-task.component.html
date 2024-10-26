@@ -3,6 +3,7 @@
 <form (ngSubmit)="asigTask()" action="">
     <div>
         <label for="task_description">Descripcion de la tarea</label>
+        <input [(ngModel)]="task.task_description" type="text" name="task_description" id="task_description" required>
     </div>
 
 </form>
